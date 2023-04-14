@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
 const Navbar: React.FC = () => {
     // const isAuthenticated = useSelector((state) => state.user.isAuthenticated)
-    const isAuthenticated = useSelector((state: any) => state.user.isAuthenticated)
+    const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated)
 
   const authLinks = (
     <ul>
