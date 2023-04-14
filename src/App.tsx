@@ -2,11 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './page/LandingPage';
 import './App.css';
+import Navbar from './components/Navbar';
 
 const App: React.FC = () => {
   return (
     <>
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/register" element={<RegisterPage />} /> */}
