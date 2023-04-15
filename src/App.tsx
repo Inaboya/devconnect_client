@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './page/LandingPage';
 import './App.css';
 import Navbar from './components/Navbar';
+import RegisterPage from './page/RegisterPage';
 
 const App: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const App: React.FC = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          {/* <Route path="/register" element={<RegisterPage />} /> */}
+          <Route path="/register" element={<RegisterPage />} />
           {/* <Route path="/login" element={<LoginPage />} /> */}
           {/* <Route path="/profiles" element={<ProfilesPage />} /> */}
           {/* <Route path="/profiles/:id" element={<ProfilePage />} /> */}
