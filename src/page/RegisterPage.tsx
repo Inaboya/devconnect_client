@@ -32,12 +32,20 @@ const RegisterPage: React.FC = () => {
         name,
         email,
         password,
-        password2,
+        // password2,
       };
 
-      dispatch(registerUser(payload));
+      const data = await dispatch(registerUser(payload));
 
-      navigate('/login');
+      if (data.type === 'auth/registerUser/rejected') {
+
+        data.payload.forEach((error: any) => {
+          dispatch(setAlert(error.msg, 'danger'));
+        })
+        return;
+      } else {
+        navigate('/login');
+      }
     }
   };
   return (

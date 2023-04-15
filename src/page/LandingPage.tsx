@@ -1,14 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
-
-// interface Props {
-//     isAuthenticated: boolean;
-// }
+import { RootState } from '../redux/store';
 
 const LandingPage: React.FC = () => {
-  // if (isAuthenticated) {
+  const isAuth = useSelector((state: RootState) => state.user.isAuthenticated);
 
-  // }
+  if (isAuth) {
+    return <Navigate to="/dashboard" />;
+  }
   return (
     <section className="landing">
       <div className="dark-overlay">

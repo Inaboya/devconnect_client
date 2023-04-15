@@ -4,12 +4,14 @@ import LandingPage from './page/LandingPage';
 import './App.css';
 import Navbar from './components/Navbar';
 import RegisterPage from './page/RegisterPage';
+import Alert from './components/Alert';
 
 const App: React.FC = () => {
   return (
     <>
       <Router>
         <Navbar />
+        <Alert />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={<RegisterPage />} />

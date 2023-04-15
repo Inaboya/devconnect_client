@@ -46,11 +46,13 @@ export const registerUser = createAsyncThunk(
       return res.data;
     } catch (error: any) {
       console.log(error, 'error');
-      const errors = error.response.data.errors;
+      const errors = error.response.data.message;
+
+      console.log(errors, 'errors')
 
       if (errors) {
         errors.forEach((error: any) =>
-          dispatch(setAlert(error.message, 'danger')),
+          dispatch(setAlert(error, 'danger')),
         );
       }
       return rejectWithValue(error.response.data.message);
