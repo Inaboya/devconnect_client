@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AuthInitialState, RegisterPayload } from '../../utils/typings';
 import { useAxios } from '../../utils/useAxios';
+import { setAlert } from './alertSlice';
 
 console.log(process.env.REACT_APP_BACKEND_API, 'wetin be this');
 
@@ -44,7 +45,14 @@ export const registerUser = createAsyncThunk(
 
       return res.data;
     } catch (error: any) {
-      console.log({ error });
+      console.log(error, 'error');
+      const errors = error.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error: any) =>
+          dispatch(setAlert(error.message, 'danger')),
+        );
+      }
       return rejectWithValue(error.response.data.message);
     }
   },
