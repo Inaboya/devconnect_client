@@ -31,6 +31,7 @@ const RegisterPage: React.FC = () => {
         name,
         email,
         password,
+        password2,
       };
 
       dispatch(registerUser(payload));

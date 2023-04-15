@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AuthInitialState, RegisterPayload } from '../../utils/typings';
 import { useAxios } from '../../utils/useAxios';
 
+console.log(process.env.REACT_APP_BACKEND_API, 'wetin be this');
+
 // initial state
 
 const initialState: AuthInitialState = {
@@ -24,7 +26,7 @@ export const loadUser = createAsyncThunk(
 
       return res.data;
     } catch (error: any) {
-      console.log(error);
+      console.log({ error });
       return rejectWithValue(error.response.data.errors);
     }
   },
@@ -33,6 +35,7 @@ export const loadUser = createAsyncThunk(
 export const registerUser = createAsyncThunk(
   'auth/registerUser',
   async (payload: RegisterPayload, { rejectWithValue, getState, dispatch }) => {
+    console.log({ payload });
     try {
       const res = await useAxios.post(
         `${process.env.REACT_APP_BACKEND_API}/users`,
@@ -41,8 +44,8 @@ export const registerUser = createAsyncThunk(
 
       return res.data;
     } catch (error: any) {
-      // console.log(error);
-      return error.response.data.errors;
+      console.log({ error });
+      return rejectWithValue(error.response.data.message);
     }
   },
 );

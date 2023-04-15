@@ -12,4 +12,7 @@ export interface AuthInitialState {
   user: RegisterPayload | null;
   error: string | null;
 }
+
+export const SET_ALERT = 'SET_ALERT';
+export const REMOVE_ALERT = 'REMOVE_ALERT';
       
