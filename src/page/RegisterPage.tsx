@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerUser } from '../redux/slice/authSlice';
+import { setAlert } from '../redux/slice/alertSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../redux/store';
 
@@ -24,7 +25,7 @@ const RegisterPage: React.FC = () => {
     e.preventDefault();
 
     if (password !== password2) {
-      alert('password do not match');
+      dispatch(setAlert('Passwords do not match', 'danger'));
       return;
     } else {
       const payload = {

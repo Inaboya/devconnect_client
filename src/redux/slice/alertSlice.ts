@@ -29,3 +29,6 @@ export const alertSlice = createSlice({
     },
   },
 });
+
+
+export default alertSlice.reducer;
