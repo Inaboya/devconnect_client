@@ -4,6 +4,7 @@ import { registerUser } from '../redux/slice/authSlice';
 import { setAlert } from '../redux/slice/alertSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../redux/store';
+import { toast } from 'react-toastify';
 
 const RegisterPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +41,12 @@ const RegisterPage: React.FC = () => {
       if (data.type === 'auth/registerUser/rejected') {
 
         data.payload.forEach((error: any) => {
-          dispatch(setAlert(error.msg, 'danger'));
+          // dispatch(setAlert(error.msg, 'danger'));
+
+          toast.error(error.msg, {
+            position: toast.POSITION.TOP_LEFT,
+            autoClose: 5000,
+          })
         })
         return;
       } else {
