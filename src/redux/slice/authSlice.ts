@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AuthInitialState, RegisterPayload } from '../../utils/typings';
+import { AuthInitialState, LoginPayload, RegisterPayload } from '../../utils/typings';
 import { useAxios } from '../../utils/useAxios';
 import { setAlert } from './alertSlice';
 
@@ -45,16 +45,6 @@ export const registerUser = createAsyncThunk(
 
       return res.data;
     } catch (error: any) {
-      console.log(error, 'error');
-      const errors = error.response.data.message;
-
-      console.log(errors, 'errors')
-
-      if (errors) {
-        errors.forEach((error: any) =>
-          dispatch(setAlert(error, 'danger')),
-        );
-      }
       return rejectWithValue(error.response.data.message);
     }
   },
@@ -62,7 +52,7 @@ export const registerUser = createAsyncThunk(
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
-  async (payload, { rejectWithValue, getState, dispatch }) => {
+  async (payload: LoginPayload, { rejectWithValue, getState, dispatch }) => {
     try {
       const res = await useAxios.post(
         `${process.env.REACT_APP_BACKEND_API}/users/login`,

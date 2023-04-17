@@ -5,6 +5,7 @@ import { setAlert } from '../redux/slice/alertSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../redux/store';
 import { toast } from 'react-toastify';
+import Loader from '../components/Loader';
 
 const RegisterPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ const RegisterPage: React.FC = () => {
     password: '',
     password2: '',
   });
+
+  const [loading, setLoading] = useState(false);
 
   const { name, email, password, password2 } = formData;
 
@@ -23,10 +26,39 @@ const RegisterPage: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log(123);
     e.preventDefault();
+    console.log('testing 1');
+    setLoading(true);
+
+    console.log({ loading });
+
+    if (!name || !email || !password || !password2) {
+      toast.error('Please enter all fields', {
+        position: toast.POSITION.TOP_LEFT,
+        autoClose: 5000,
+      });
+      console.log('testing 2');
+      // alert('Please enter all fields');
+
+      setLoading(false);
+      return;
+    }
+
+    console.log({ name, email, password, password2 });
+
+    console.log('testing 3');
 
     if (password !== password2) {
-      dispatch(setAlert('Passwords do not match', 'danger'));
+      console.log('testing 3');
+
+      toast.error('Passwords do not match', {
+        position: toast.POSITION.TOP_LEFT,
+        autoClose: 5000,
+      });
+      setLoading(false);
+      console.log('testing 4');
+
       return;
     } else {
       const payload = {
@@ -36,26 +68,40 @@ const RegisterPage: React.FC = () => {
         // password2,
       };
 
+      console.log('testing 5');
+
       const data = await dispatch(registerUser(payload));
 
+      console.log({ data });
+      console.log('testing 6');
+
       if (data.type === 'auth/registerUser/rejected') {
-
         data.payload.forEach((error: any) => {
-          // dispatch(setAlert(error.msg, 'danger'));
-
           toast.error(error.msg, {
             position: toast.POSITION.TOP_LEFT,
             autoClose: 5000,
-          })
-        })
+          });
+        });
+        console.log('testing 7');
+
+        setLoading(false);
+        console.log('testing 8');
+
         return;
       } else {
+        console.log('testing 9');
+
+        setLoading(false);
+
+        console.log('testing 10');
+
         navigate('/login');
       }
     }
   };
   return (
     <section className="container">
+      <Loader loading={loading} />
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
         <i className="fas fa-user" /> Create Your Account
