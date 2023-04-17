@@ -41,11 +41,7 @@ const RegisterPage: React.FC = () => {
 
     console.log({ name, email, password, password2 });
 
-    console.log('testing 3');
-
     if (password !== password2) {
-      console.log('testing 3');
-
       toast.error('Passwords do not match', {
         position: toast.POSITION.TOP_LEFT,
         autoClose: 5000,
