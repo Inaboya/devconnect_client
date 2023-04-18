@@ -48,13 +48,21 @@ const RegisterPage: React.FC = () => {
         name,
         email,
         password,
-        // password2,
+        password2,
       };
 
       const data = await dispatch(registerUser(payload));
 
       if (data.type === 'auth/registerUser/rejected') {
-        data.payload.forEach((error: any) => {
+        console.log(data.payload, 'data.payload');
+        if (typeof data.payload === 'string') {
+          toast.error(data.payload, {
+            position: toast.POSITION.TOP_LEFT,
+            autoClose: 5000,
+          });
+          return;
+        }
+        data?.payload?.forEach((error: any) => {
           toast.error(error, {
             position: toast.POSITION.TOP_LEFT,
             autoClose: 5000,
@@ -63,6 +71,10 @@ const RegisterPage: React.FC = () => {
 
         return;
       } else if (data.type === 'auth/registerUser/fulfilled') {
+        toast.success('User successfully registered', {
+          position: toast.POSITION.TOP_LEFT,
+          autoClose: 5000,
+        });
         navigate('/login');
       }
     }

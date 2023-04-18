@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { AuthInitialState, LoginPayload, RegisterPayload } from '../../utils/typings';
+import {
+  AuthInitialState,
+  LoginPayload,
+  RegisterPayload,
+} from '../../utils/typings';
 import { useAxios } from '../../utils/useAxios';
 import { setAlert } from './alertSlice';
 
@@ -45,7 +49,8 @@ export const registerUser = createAsyncThunk(
 
       return res.data;
     } catch (error: any) {
-      return rejectWithValue(error.response.data.message);
+      console.log(error, 'error action');
+      return rejectWithValue(error.response.data.errors || error.response.data.message);
     }
   },
 );
