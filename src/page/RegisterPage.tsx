@@ -55,7 +55,7 @@ const RegisterPage: React.FC = () => {
 
       if (data.type === 'auth/registerUser/rejected') {
         data.payload.forEach((error: any) => {
-          toast.error(error.msg, {
+          toast.error(error, {
             position: toast.POSITION.TOP_LEFT,
             autoClose: 5000,
           });
