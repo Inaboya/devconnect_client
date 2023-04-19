@@ -54,7 +54,6 @@ const RegisterPage: React.FC = () => {
       const data = await dispatch(registerUser(payload));
 
       if (data.type === 'auth/registerUser/rejected') {
-        console.log(data.payload, 'data.payload');
         if (typeof data.payload === 'string') {
           toast.error(data.payload, {
             position: toast.POSITION.TOP_LEFT,
