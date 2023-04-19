@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import RegisterPage from './page/RegisterPage';
 import LoginPage from './page/LoginPage';
 import Alert from './components/Alert';
+import PrivateRoute from './routing/PrivateRoute';
+import Dashboard from './page/Dashboard';
 
 const App: React.FC = () => {
   return (
@@ -19,10 +21,10 @@ const App: React.FC = () => {
           <Route path="/login" element={<LoginPage />} />
           {/* <Route path="/profiles" element={<ProfilesPage />} /> */}
           {/* <Route path="/profiles/:id" element={<ProfilePage />} /> */}
-          {/* <Route
+          <Route
             path="dashboard"
-            element={<PrivateRoute component={Dashboard} />}
-          /> */}
+            element={<PrivateRoute Component={Dashboard} />}
+          />
           {/* <Route
             path="create-profile"
             element={<PrivateRoute component={ProfileForm} />}
