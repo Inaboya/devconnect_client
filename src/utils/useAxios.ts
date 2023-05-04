@@ -1,15 +1,26 @@
 import axios from 'axios';
+import {store} from '../redux/store';
+import { LOGOUT} from './typings'
 
 const baseUrl = process.env.BACKEND_API as string;
 
-export const useAxios = axios.create({
-    baseURL: baseUrl,
-})
+const useAxios = axios.create({
+  baseURL: baseUrl,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 
-export const useAxios2 = axios.create({
-    baseURL: baseUrl,
-    headers: {
-        // Authorization: 
+
+useAxios.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    if (err.response.status === 401) {
+      store.dispatch({ type: LOGOUT });
     }
-})
+    return Promise.reject(err);
+  },
+);
+
+export default useAxios;

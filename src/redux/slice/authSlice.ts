@@ -2,17 +2,16 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {
   AuthInitialState,
   LoginPayload,
+  LOGOUT,
   RegisterPayload,
 } from '../../utils/typings';
-import { useAxios } from '../../utils/useAxios';
+import useAxios from '../../utils/useAxios';
 import { setAlert } from './alertSlice';
 
-console.log(process.env.REACT_APP_BACKEND_API, 'wetin be this');
 
 // initial state
-
 const initialState: AuthInitialState = {
-  token: localStorage.getItem('token') || '',
+  token: localStorage.getItem('token') || null,
   isAuthenticated: false,
   loading: true,
   user: null,
@@ -20,7 +19,6 @@ const initialState: AuthInitialState = {
 };
 
 // create async thunk
-
 export const loadUser = createAsyncThunk(
   'auth/loadUser',
   async (payload, { rejectWithValue, getState, dispatch }) => {
@@ -50,7 +48,9 @@ export const registerUser = createAsyncThunk(
       return res.data;
     } catch (error: any) {
       console.log(error, 'error action');
-      return rejectWithValue(error.response.data.errors || error.response.data.message);
+      return rejectWithValue(
+        error.response.data.errors || error.response.data.message,
+      );
     }
   },
 );
@@ -64,6 +64,7 @@ export const loginUser = createAsyncThunk(
         payload,
       );
 
+      dispatch(loadUser);
       return res.data;
     } catch (error: any) {
       console.log(error);
@@ -71,6 +72,11 @@ export const loginUser = createAsyncThunk(
     }
   },
 );
+
+// logout user
+export const logoutUser = () => {
+  return { type: LOGOUT };
+};
 
 const authSlice = createSlice({
   name: 'user',
@@ -88,6 +94,13 @@ const authSlice = createSlice({
 
     loadUser: (state, action) => {
       state.user = action.payload;
+      state.loading = false;
+    },
+
+    logOut: (state, action) => {
+      state.user = null;
+      state.isAuthenticated = false;
+      state.token = null;
       state.loading = false;
     },
   },

@@ -11,7 +11,7 @@ export interface LoginPayload {
 }
 
 export interface AuthInitialState {
-  token: string;
+  token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
   user: RegisterPayload | null;
@@ -20,4 +20,5 @@ export interface AuthInitialState {
 
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+export const LOGOUT = 'LOGOUT';
       

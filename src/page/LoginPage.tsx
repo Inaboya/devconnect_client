@@ -4,12 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { loginUser } from '../redux/slice/authSlice';
 import { AppDispatch } from '../redux/store';
+import { override } from './RegisterPage';
+import { ClipLoader } from 'react-spinners';
 
 const LoginPage: React.FC = () => {
   const [formData, setFormData] = React.useState({
     email: '',
     password: '',
   });
+  const [loading, setLoading] = React.useState(false);
 
   const { email, password } = formData;
 
@@ -18,12 +21,14 @@ const LoginPage: React.FC = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!email || !password) {
       toast.error('Please enter all fields', {
         position: toast.POSITION.TOP_LEFT,
         autoClose: 5000,
       });
+      setLoading(false);
       return;
     } else {
       const payload = {
@@ -38,11 +43,15 @@ const LoginPage: React.FC = () => {
           position: toast.POSITION.TOP_LEFT,
           autoClose: 5000,
         });
+        setLoading(false);
+
         return;
       } else {
         toast.success('Login success', {
           position: toast.POSITION.TOP_LEFT,
         });
+        setLoading(false);
+
         navigate('/dashboard');
       }
     }
@@ -53,6 +62,13 @@ const LoginPage: React.FC = () => {
   };
   return (
     <section className="container">
+      <ClipLoader
+        loading={loading}
+        color="blue"
+        cssOverride={override}
+        size={150}
+      />
+
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead">
         <i className="fas fa-user" /> Sign Into Your Account

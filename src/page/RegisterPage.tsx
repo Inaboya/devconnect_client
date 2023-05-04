@@ -5,8 +5,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AppDispatch } from '../redux/store';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+// import LoadingSpinner from '../components/LoaderComponent';
+import { RingLoader } from 'react-spinners';
 
 toast.configure();
+
+
+export const override: CSSProperties = {
+  // position: "absolute",
+  // top: "50%",
+  // left: "50%",
+  display: "block",
+  margin: "0 auto",
+  borderColor: "blue",
+};
+
 
 const RegisterPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +28,7 @@ const RegisterPage: React.FC = () => {
     password: '',
     password2: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const { name, email, password, password2 } = formData;
 
@@ -26,6 +40,7 @@ const RegisterPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!name || !email || !password || !password2) {
       toast.error('Please enter all fields', {
@@ -33,6 +48,7 @@ const RegisterPage: React.FC = () => {
         autoClose: 5000,
       });
 
+      setLoading(false);
       return;
     }
 
@@ -41,6 +57,8 @@ const RegisterPage: React.FC = () => {
         position: toast.POSITION.TOP_LEFT,
         autoClose: 5000,
       });
+
+      setLoading(false);
 
       return;
     } else {
@@ -59,6 +77,8 @@ const RegisterPage: React.FC = () => {
             position: toast.POSITION.TOP_LEFT,
             autoClose: 5000,
           });
+
+          setLoading(false);
           return;
         }
         data?.payload?.forEach((error: any) => {
@@ -68,12 +88,15 @@ const RegisterPage: React.FC = () => {
           });
         });
 
+        setLoading(false);
         return;
       } else if (data.type === 'auth/registerUser/fulfilled') {
         toast.success('User successfully registered', {
           position: toast.POSITION.TOP_LEFT,
           autoClose: 5000,
         });
+
+        setLoading(false);
         navigate('/login');
       }
     }
@@ -81,6 +104,7 @@ const RegisterPage: React.FC = () => {
   return (
     <>
       <section className="container">
+        <RingLoader loading={loading} color='blue' cssOverride={override} size={150} />
         <h1 className="large text-primary">Sign Up</h1>
         <p className="lead">
           <i className="fas fa-user" /> Create Your Account
