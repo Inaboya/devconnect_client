@@ -1,20 +1,9 @@
-import React, { Component } from 'react';
-import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
-import SpinnerLoader from '../components/SpinnerLoader';
-import { RootState } from '../redux/store';
+import React from 'react'
 
-const PrivateRoute = ({ Component }: any) => {
-  const [loading, isAuth] = useSelector((state: RootState) => [
-    state.user.loading,
-    state.user.isAuthenticated,
-  ]);
+const PrivateRoute = () => {
+  return (
+    <div>PrivateRoute</div>
+  )
+}
 
-  if (loading) return <SpinnerLoader />;
-
-  if (isAuth) return <Component />;
-
-  return <Navigate to="/login" />;
-};
-
-export default PrivateRoute;
+export default PrivateRoute

@@ -1,31 +1,42 @@
-import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../slice/authSlice';
-import alertReducer from '../slice/alertSlice';
+import { createStore, applyMiddleware, Action } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk, { ThunkDispatch } from 'redux-thunk';
+// import rootReducer from './reducer';
+import rootReducer from '../reducer';
 import { setAuthToken } from '../../utils/setAuthToken';
+// import setAuthToken from '../utils/setAuthToken';
+// import { Action } from './actions/actions';
 
-// store
+const initialState = {};
 
-const stored = configureStore({
-  reducer: {
-    user: authReducer,
-    alert: alertReducer,
-  },
+const middleware = [thunk];
+
+
+const store = createStore(
+    rootReducer,
+    initialState,
+    composeWithDevTools(applyMiddleware(...middleware))
+)
+
+let currentState = store.getState();
+
+store.subscribe(() => {
+    let previousState = currentState;
+    currentState = store.getState();
+    if (previousState.auth.token !== currentState.auth.token) {
+        const token = currentState.auth.token;
+        setAuthToken(token);
+    }
 });
 
-let currentState = stored.getState();
 
-stored.subscribe(() => {
-  let previousState = currentState;
+// Persist redux state 
 
-  currentState = stored.getState();
+// export type AppDispatch = typeof store.dispatch;
 
-  if (previousState.user.token !== currentState.user.token) {
-    const token = currentState.user.token;
-    setAuthToken(token);
-  }
-});
+export type AppDispatch = ThunkDispatch<RootState, null, Action>; // Define AppDispatch type
 
-export const store = stored
+export type RootState = ReturnType<typeof store.getState>; // Define RootState type
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+
+export default store;

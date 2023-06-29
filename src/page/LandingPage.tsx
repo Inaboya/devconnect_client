@@ -1,35 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, Navigate } from 'react-router-dom';
-import { RootState } from '../redux/store';
+import React from 'react'
 
-const LandingPage: React.FC = () => {
-  const isAuth = useSelector((state: RootState) => state.user.isAuthenticated);
-
-  if (isAuth) {
-    return <Navigate to="/dashboard" />;
-  }
+const LandingPage = () => {
   return (
-    <section className="landing">
-      <div className="dark-overlay">
-        <div className="landing-inner">
-          <h1 className="x-large">Developer Connector</h1>
-          <p className="lead">
-            Create a developer profile/portfolio, share posts and get help from
-            other developers
-          </p>
-          <div className="buttons">
-            <Link to="/register" className="btn btn-primary">
-              Sign Up
-            </Link>
-            <Link to="/login" className="btn btn-light">
-              Login
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
+    <div>LandingPage</div>
+  )
+}
 
-export default LandingPage;
+export default LandingPage
