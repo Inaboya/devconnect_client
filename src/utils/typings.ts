@@ -1,14 +1,10 @@
-export interface RegisterPayload {
-  name: string;
+export interface FormData {
+  name?: string;
   email: string;
   password: string;
   password2?: string;
 }
 
-export interface LoginPayload { 
-  email: string;
-  password: string;
-}
 
 export interface AuthInitialState {
   token: string | null;
