@@ -1,1 +1,1 @@
-const posts = "posts";
+import axios from "axios";

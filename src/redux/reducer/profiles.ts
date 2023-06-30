@@ -1,1 +1,1 @@
-const profile = "profile";
+import axios from "axios";

@@ -10,7 +10,7 @@ export interface AuthInitialState {
   token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
-  user: RegisterPayload | null;
+  user: FormData | null;
   error: string | null;
 }
 

@@ -58,17 +58,17 @@ export const loginUser = (formData: FormData) => async (dispatch: any) => {
 };
 
 export const getUser = (id: string) => async (dispatch: any) => {
-    try {
-        const res = await api.get(`/users/${id}`);
-    
-        dispatch({
-        type: USER_LOADED_SUCCESS,
-        payload: res.data,
-        });
-    } catch (error: any) {
-        dispatch({
-        type: USER_LOADED_FAILURE,
-        payload: error.response.data.error,
-        });
-    }
-}
+  try {
+    const res = await api.get(`/users/${id}`);
+
+    dispatch({
+      type: USER_LOADED_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error: any) {
+    dispatch({
+      type: USER_LOADED_FAILURE,
+      payload: error.response.data.error,
+    });
+  }
+};
