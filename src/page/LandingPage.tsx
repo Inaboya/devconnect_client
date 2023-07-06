@@ -1,9 +1,44 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { RootState } from '../redux/store';
+import { Link, Navigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const LandingPage = () => {
+interface LandingPageProps {
+  token: string | null;
+}
+
+const LandingPage: React.FC<LandingPageProps> = ({ token}) => {
+  if (token) <Navigate to="/dashboard" />
   return (
-    <div>LandingPage</div>
+    <section className="landing">
+      <div className="dark-overlay">
+        <div className="landing-inner">
+          <h1 className="x-large">Developer Connector</h1>
+          <p className="lead">
+            Create a developer profile/portfolio, share posts and get help from
+            other developers
+          </p>
+          <div className="buttons">
+            <Link to="/register" className="btn btn-primary">
+              Sign Up
+            </Link>
+            <Link to="/login" className="btn btn-light">
+              Login
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
-export default LandingPage
+LandingPage.propTypes = {
+  token: PropTypes.string,
+}
+
+const mapStateToProps = (state: RootState) => ({
+  token: state.auth.token,
+})
+
+export default connect(mapStateToProps, {})(LandingPage);
