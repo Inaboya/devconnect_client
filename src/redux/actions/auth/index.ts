@@ -33,11 +33,15 @@ export const registerUser = (formData: FormData) => async (dispatch: any) => {
       type: REGISTER_USER_SUCCESS,
       payload: res.data,
     });
+
+    return res.data;
   } catch (error: any) {
     dispatch({
       type: REGISTER_USER_FAILURE,
       payload: error.response.data.error,
     });
+
+    return error.response.data.errors;
   }
 };
 
@@ -54,6 +58,7 @@ export const loginUser = (formData: FormData) => async (dispatch: any) => {
       type: LOGIN_USER_FAILURE,
       payload: error.response.data.error,
     });
+    return error.response.data.errors;
   }
 };
 

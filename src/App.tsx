@@ -9,6 +9,9 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import LandingPage from "./page/LandingPage";
 import RegisterPage from "./page/RegisterPage";
+import LoginPage from "./page/LoginPage";
+import PrivateRoute from "./routing/PrivateRoute";
+import Dashboard from "./page/Dashboard";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,6 +36,14 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
 
           <Route path="register"  element={<RegisterPage />} />
+          <Route path="login"  element={<LoginPage />} />
+
+          {/* Private routing component */}
+
+          <Route
+            path="/"
+            element={<PrivateRoute component={Dashboard} />}
+          />
         </Routes>
       </Router>
     </>
