@@ -1,3 +1,4 @@
+import { error } from "console";
 import { FormData } from "../../../utils/typings";
 import api from "../../../utils/useAxios";
 import {
@@ -49,10 +50,14 @@ export const loginUser = (formData: FormData) => async (dispatch: any) => {
   try {
     const res = await api.post("/users/login", formData);
 
+    console.log(res.data, "res.data");
+
     dispatch({
       type: LOGIN_USER_SUCCESS,
       payload: res.data,
     });
+
+    return res.data;
   } catch (error: any) {
     dispatch({
       type: LOGIN_USER_FAILURE,

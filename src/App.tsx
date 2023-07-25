@@ -41,7 +41,7 @@ const App = () => {
           {/* Private routing component */}
 
           <Route
-            path="/"
+            path="/dashboard"
             element={<PrivateRoute component={Dashboard} />}
           />
         </Routes>

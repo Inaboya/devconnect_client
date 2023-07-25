@@ -17,6 +17,7 @@ const initialState = {
 } as AuthInitialState;
 
 const authReducer = (state = initialState, action: any) => {
+  console.log(action.payload, "action.payload")
   switch (action.type) {
     case REGISTER_USER_SUCCESS:
       return {
@@ -36,7 +37,7 @@ const authReducer = (state = initialState, action: any) => {
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        ...action.payload,
         isAuthenticated: true,
         error: null,
       };

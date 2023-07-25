@@ -1,11 +1,14 @@
-import useAxios from './useAxios';
+import useAxios from "./useAxios";
 
-export const setAuthToken = (token: string | null) => {
+export const setAuthToken = (token: string) => {
   if (token) {
-    useAxios.defaults.headers.common['x-auth-token'] = token;
-    localStorage.setItem('token', token);
+    console.log("token", token);
+    useAxios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    localStorage.setItem("token", token);
   } else {
-    delete useAxios.defaults.headers.common['x-auth-token'];
-    localStorage.removeItem('token');
+    delete useAxios.defaults.headers.common["Authorization"];
+    localStorage.removeItem("token");
   }
 };
+
+

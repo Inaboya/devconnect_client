@@ -30,6 +30,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ loginUser }) => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("handleSubmit")
     e.preventDefault();
 
     setLoading(true);
@@ -65,7 +66,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ loginUser }) => {
       autoClose: 5000,
     });
 
-    navigate("/");
+    navigate("/dashboard");
   };
 
   const { email, password } = formData;

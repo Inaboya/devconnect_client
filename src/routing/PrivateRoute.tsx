@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 interface PrivateRouteProps {
   component: React.ComponentType;
-  token: string;
+  token: string | null;
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({
@@ -17,7 +17,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({
 };
 
 PrivateRoute.propTypes = {
-  token: PropTypes.string.isRequired,
+  token: PropTypes.string,
 };
 
 const mapStateToProps = (state: any) => ({
