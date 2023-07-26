@@ -167,16 +167,3 @@ export const deleteEducation = (id: string) => async (dispatch: Dispatch) => {
     return error.response.data.errors;
   }
 };
-
-// export const deleteAccount = () => async (dispatch: Dispatch) => {
-//   try {
-//     const res = await useAxios.delete("")
-//   } catch (error: any) {
-//     dispatch({
-//       type: ACCOUNT_DELETE_FAILURE,
-//       payload: error.response.data.errors,
-//     })
-
-//     return error.response.data.errors
-//   }
-// }

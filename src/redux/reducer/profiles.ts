@@ -1,1 +1,5 @@
-import axios from "axios";
+const initialState = {
+  profiles: [],
+  profile: {},
+  error: {},
+};
