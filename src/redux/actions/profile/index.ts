@@ -93,14 +93,14 @@ export const addExperience = (formData: any) => async (dispatch: Dispatch) => {
     const res = await useAxios.post("/profile/experience", formData);
 
     dispatch({
-      type: GET_PROFILES_SUCCESS,
+      type: GET_PROFILE_SUCCESS,
       payload: res.data,
     });
 
     return res.data;
   } catch (error: any) {
     dispatch({
-      type: UPDATE_PROFILE_FAILURE,
+      type: GET_PROFILE_FAILURE,
       payload: error.response.data.errors,
     });
 
@@ -113,14 +113,14 @@ export const addEducation = (formData: any) => async (dispatch: Dispatch) => {
     const res = await useAxios.post("/profile/education", formData);
 
     dispatch({
-      type: UPDATE_PROFILE_SUCCESS,
+      type: GET_PROFILE_SUCCESS,
       payload: res.data,
     });
 
     return res.data;
   } catch (error: any) {
     dispatch({
-      type: UPDATE_PROFILE_FAILURE,
+      type: GET_PROFILE_FAILURE,
       payload: error.response.data.errors,
     });
 

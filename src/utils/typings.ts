@@ -22,6 +22,12 @@ export interface ProfileFormData {
   experience?: ExperienceFormData[];
 }
 
+export interface ProfileInitialState {
+  profile: ProfileFormData | null;
+  profiles: ProfileFormData[];
+  error: object | null;
+}
+
 
 export interface EducationFormData {
   id?: string;
