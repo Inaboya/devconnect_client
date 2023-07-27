@@ -21,14 +21,14 @@ export const getCurrentUserProfile = () => async (dispatch: Dispatch) => {
       payload: res.data,
     });
 
-    return res.data;
+    // return res.data;
   } catch (error: any) {
     dispatch({
       type: GET_PROFILE_FAILURE,
       payload: error.response.data.errors,
     });
 
-    return error.response.data.errors;
+    // return error.response.data.errors;
   }
 };
 
@@ -133,14 +133,14 @@ export const deleteExperience = (id: string) => async (dispatch: Dispatch) => {
     const res = await useAxios.delete(`/profile/experience/${id}`);
 
     dispatch({
-      type: UPDATE_PROFILE_SUCCESS,
+      type: GET_PROFILE_SUCCESS,
       payload: res.data,
     });
 
     return res.data;
   } catch (error: any) {
     dispatch({
-      type: UPDATE_PROFILE_FAILURE,
+      type: GET_PROFILE_FAILURE,
       payload: error.response.data.errors,
     });
 
@@ -153,14 +153,14 @@ export const deleteEducation = (id: string) => async (dispatch: Dispatch) => {
     const res = await useAxios.delete(`/profile/education/${id}`);
 
     dispatch({
-      type: UPDATE_PROFILE_SUCCESS,
+      type: GET_PROFILE_SUCCESS,
       payload: res.data,
     });
 
     return res.data;
   } catch (error: any) {
     dispatch({
-      type: UPDATE_PROFILE_FAILURE,
+      type: GET_PROFILE_FAILURE,
       payload: error.response.data.errors,
     });
 

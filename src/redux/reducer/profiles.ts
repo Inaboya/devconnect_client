@@ -38,5 +38,8 @@ export default function profilesReducer(state = initialState, action: any) {
         ...state,
         error: action.payload,
       };
+
+    default:
+      return state;
   }
 }

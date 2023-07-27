@@ -1,11 +1,27 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import DashboardActions from '../components/DashboardActions';
-import Experience from '../components/Experience';
-import Education from '../components/Education';
+import React from "react";
+import { Link } from "react-router-dom";
+import DashboardActions from "../components/DashboardActions";
+import PropTypes from "prop-types";
+import Experience from "../components/Experience";
+import Education from "../components/Education";
+import { RootState } from "../redux/store";
+import { connect } from "react-redux";
+import { getCurrentUserProfile } from "../redux/actions/profile";
 
-const Dashboard: React.FC = () => {
-  const profile = null;
+interface DashboardProps {
+  getCurrentUserProfile: () => Promise<void>;
+  profile: any;
+  auth: any;
+}
+
+const Dashboard: React.FC<DashboardProps> = ({
+  getCurrentUserProfile,
+  profile,
+  auth: { user },
+}) => {
+  React.useEffect(() => {
+    getCurrentUserProfile && getCurrentUserProfile();
+  }, [getCurrentUserProfile]);
   return (
     <section className="container">
       <h1 className="large text-primary">Dashboard</h1>
@@ -33,7 +49,18 @@ const Dashboard: React.FC = () => {
         </>
       )}
     </section>
-  )
-}
+  );
+};
 
-export default Dashboard;
+Dashboard.propTypes = {
+  getCurrentUserProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state: RootState) => ({
+  auth: state.auth,
+  profile: state.profile?.profile,
+});
+
+export default connect(mapStateToProps, { getCurrentUserProfile })(Dashboard);
