@@ -13,6 +13,8 @@ const initialState = {
 } as ProfileInitialState;
 
 export default function profilesReducer(state = initialState, action: any) {
+  console.log(action.payload, "profiles")
+
   switch (action.type) {
     case GET_PROFILES_SUCCESS:
       return {

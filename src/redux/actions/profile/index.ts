@@ -18,17 +18,17 @@ export const getCurrentUserProfile = () => async (dispatch: Dispatch) => {
 
     dispatch({
       type: GET_PROFILE_SUCCESS,
-      payload: res.data,
+      payload: res.data.data,
     });
 
-    // return res.data;
+    return res.data.data;
   } catch (error: any) {
     dispatch({
       type: GET_PROFILE_FAILURE,
       payload: error.response.data.errors,
     });
 
-    // return error.response.data.errors;
+    return error.response.data.errors;
   }
 };
 

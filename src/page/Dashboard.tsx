@@ -22,6 +22,8 @@ const Dashboard: React.FC<DashboardProps> = ({
   React.useEffect(() => {
     getCurrentUserProfile && getCurrentUserProfile();
   }, [getCurrentUserProfile]);
+
+  console.log({profile}, 'from component')
   return (
     <section className="container">
       <h1 className="large text-primary">Dashboard</h1>
