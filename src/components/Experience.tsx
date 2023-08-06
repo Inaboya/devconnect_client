@@ -1,6 +1,10 @@
 import React from 'react'
+import { ExperienceFormData } from '../utils/typings'
 
-const Experience = () => {
+interface  ExperienceProps {
+  experience: ExperienceFormData[]
+}
+const Experience: React.FC<ExperienceProps> = ({}) => {
   return (
     <div>Experience</div>
   )
