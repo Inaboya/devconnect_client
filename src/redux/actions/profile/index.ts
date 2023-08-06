@@ -137,14 +137,14 @@ export const deleteExperience = (id: string) => async (dispatch: Dispatch) => {
       payload: res.data,
     });
 
-    return res.data;
+    // return res.data;
   } catch (error: any) {
     dispatch({
       type: GET_PROFILE_FAILURE,
       payload: error.response.data.errors,
     });
 
-    return error.response.data.errors;
+    // return error.response.data.errors;
   }
 };
 
@@ -157,13 +157,13 @@ export const deleteEducation = (id: string) => async (dispatch: Dispatch) => {
       payload: res.data,
     });
 
-    return res.data;
+    // return res.data;
   } catch (error: any) {
     dispatch({
       type: GET_PROFILE_FAILURE,
       payload: error.response.data.errors,
     });
 
-    return error.response.data.errors;
+    // return error.response.data.errors;
   }
 };
