@@ -56,6 +56,10 @@ export interface AuthInitialState {
   error: string | null;
 }
 
+export function formatDate(date: any) {
+  return new Intl.DateTimeFormat().format(new Date(date));
+}
+
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const LOGOUT = "LOGOUT";

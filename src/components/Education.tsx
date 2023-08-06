@@ -1,7 +1,11 @@
 import React from 'react'
-import { EducationFormData } from '../utils/typings'
+import { EducationFormData } from '../utils/typings';
 
-const Education: React.FC<EducationFormData[]> = () => {
+interface EducationProps {
+  education: EducationFormData[]
+}
+
+const Education: React.FC<EducationProps> = () => {
   return (
     <div>Education</div>
   )
