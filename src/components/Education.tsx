@@ -13,7 +13,7 @@ const Education: React.FC<EducationProps> = ({
   education,
   deleteEducation,
 }) => {
-  const educations = education.length &&  education.map((edu: any) => (
+  const educations = education &&  education.map((edu: any) => (
     <tr key={edu._id}>
       <td>{edu.school}</td>
       <td className="hide-sm">{edu.degree}</td>

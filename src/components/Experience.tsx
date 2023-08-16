@@ -12,7 +12,7 @@ const Experience: React.FC<ExperienceProps> = ({
   experience,
   deleteExperience,
 }) => {
-  const experiences = experience.length && experience.map((exp: any) => (
+  const experiences = experience && experience.map((exp: any) => (
     <tr key={exp._id}>
       <td>{exp.company}</td>
       <td className="hide-sm">{exp.title}</td>
