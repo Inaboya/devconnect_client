@@ -23,6 +23,8 @@ const Dashboard: React.FC<DashboardProps> = ({
     getCurrentUserProfile && getCurrentUserProfile();
   }, [getCurrentUserProfile]);
 
+  console.log({ profile }, "component");
+
   return (
     <section className="container">
       <h1 className="large text-primary">Dashboard</h1>
