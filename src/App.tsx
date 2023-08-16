@@ -12,6 +12,7 @@ import RegisterPage from "./page/RegisterPage";
 import LoginPage from "./page/LoginPage";
 import PrivateRoute from "./routing/PrivateRoute";
 import Dashboard from "./page/Dashboard";
+import AddExperience from "./page/AddExperience";
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,6 +44,11 @@ const App = () => {
           <Route
             path="/dashboard"
             element={<PrivateRoute component={Dashboard} />}
+          />
+
+<Route
+            path="/add-experience"
+            element={<PrivateRoute component={AddExperience} />}
           />
         </Routes>
       </Router>
