@@ -36,8 +36,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
 
-          <Route path="register"  element={<RegisterPage />} />
-          <Route path="login"  element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
 
           {/* Private routing component */}
 
@@ -46,7 +46,7 @@ const App = () => {
             element={<PrivateRoute component={Dashboard} />}
           />
 
-<Route
+          <Route
             path="/add-experience"
             element={<PrivateRoute component={AddExperience} />}
           />
